@@ -1,14 +1,67 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-      Ionic Blank
+      Ionic-Native Contacts Test
     </ion-title>
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
-  </p>
+<ion-content class="outer-content">
+    <ion-list>
+      <ion-list-header>
+        Create Contact
+      </ion-list-header>
+  
+      <ion-item-sliding>
+        <ion-item [color]="testresult['set_name'] === 'fail' ? 'danger': 'light'">
+            <!--<ion-icon name="leaf" item-start></ion-icon>-->
+          <h2>Set Name: {{ testresult["set_name"] }}</h2>
+        </ion-item>
+        <ion-item [color]="testresult['set_note'] === 'fail' ? 'danger': 'light'">
+          <h2>Set Note: {{ testresult["set_note"] }}</h2>
+        </ion-item>
+        <ion-item [color]="testresult['set_email'] === 'fail' ? 'danger': 'light'">
+          <h2>Set Email: {{ testresult["set_email"] }}</h2>
+        </ion-item>
+        <ion-item [color]="testresult['set_phoneNumbers'] === 'fail' ? 'danger': 'light'">
+          <h2>Set PhoneNumber: {{ testresult["set_phoneNumbers"] }}</h2>
+        </ion-item>
+      </ion-item-sliding>
+    </ion-list>
+    <ion-list>
+      <ion-list-header>
+        Save Contact
+      </ion-list-header>
+  
+      <ion-item-sliding>
+        <ion-item [color]="testresult['save_name'] === 'fail' ? 'danger': 'light'">
+            <!--<ion-icon name="leaf" item-start></ion-icon>-->
+          <h2>Save Name: {{ testresult["save_name"] }}</h2>
+        </ion-item>
+        <ion-item [color]="testresult['save_note'] === 'fail' ? 'danger': 'light'">
+          <h2>Save Note: {{ testresult["save_note"] }}</h2>
+        </ion-item>
+        <ion-item [color]="testresult['save_email'] === 'fail' ? 'danger': 'light'">
+          <h2>Save Email: {{ testresult["save_email"] }}</h2>
+        </ion-item>
+        <ion-item [color]="testresult['save_url'] === 'fail' ? 'danger': 'light'">
+          <h2>Save Urls: {{ testresult["save_url"] }}</h2>
+        </ion-item>
+        <ion-item [color]="testresult['save_phoneNumbers'] === 'fail' ? 'danger': 'light'">
+          <h2>Save PhoneNumber: {{ testresult["save_phoneNumbers"] }}</h2>
+        </ion-item>
+      </ion-item-sliding>
+    </ion-list>
+    <ion-list>
+      <ion-list-header>
+        Remove Contact
+      </ion-list-header>
+  
+      <ion-item-sliding>
+        <ion-item [color]="testresult['remove_contact'] === 'fail' ? 'danger': 'light'">
+            <!--<ion-icon name="leaf" item-start></ion-icon>-->
+          <h2>Remove Contact: {{ testresult["remove_contact"] }}</h2>
+        </ion-item>
+      </ion-item-sliding>
+    </ion-list>
 </ion-content>
