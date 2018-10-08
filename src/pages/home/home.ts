@@ -56,7 +56,7 @@ export class HomePage {
     if (!contact.emails) contact.emails = []
     contact.emails.push(new ContactField("home", "somemail@example.com"))
     if (!contact.phoneNumbers) contact.phoneNumbers = []
-    contact.phoneNumbers.push(new ContactField("cell", "000 000 0000"))
+    contact.phoneNumbers.push(new ContactField("mobile", "6471234567"))
     contact.note = "Just a test"
     return await contact.save()
   }
@@ -77,13 +77,13 @@ export class HomePage {
     this.testresult["set_name"] = (newcontact.name.givenName === 'John' && newcontact.name.familyName === 'Smith') ? "ok" : "fail"
     this.testresult["set_note"] = (newcontact.note === 'Just a test') ? "ok" : "fail"
     this.testresult["set_email"] = (newcontact.emails && newcontact.emails.length > 0 && newcontact.emails[0].value === 'somemail@example.com') ? "ok" : "fail"
-    this.testresult["set_phoneNumbers"] = (newcontact.phoneNumbers && newcontact.phoneNumbers.length === 1 && newcontact.phoneNumbers[0].value === '000 000 0000') ? "ok" : "fail"
+    this.testresult["set_phoneNumbers"] = (newcontact.phoneNumbers && newcontact.phoneNumbers.length === 1 && newcontact.phoneNumbers[0].value === '6471234567') ? "ok" : "fail"
     newcontact.name = new ContactName(null, 'Bond', 'James');
     newcontact.note = "Just another test"
     newcontact.emails = []
     newcontact.emails.push(new ContactField("home", "someothermail@example.com"))
     newcontact.phoneNumbers = []
-    newcontact.phoneNumbers.push(new ContactField("cell", "000 000 0001"))
+    newcontact.phoneNumbers.push(new ContactField("mobile", "6471234560"))
     newcontact.urls = []
     newcontact.urls.push(new ContactField("sometype", "http://www.google.be"))
     return await newcontact.save()
@@ -101,7 +101,7 @@ export class HomePage {
     this.testresult["save_note"] = (newcontact.note === 'Just another test') ? "ok" : "fail"
     this.testresult["save_email"] = (newcontact.emails && newcontact.emails.length > 0 && newcontact.emails[0].value === 'someothermail@example.com') ? "ok" : "fail"
     this.testresult["save_url"] = (newcontact.urls && newcontact.urls.length > 0 && newcontact.urls[0].value === 'http://www.google.be"') ? "ok" : "fail"
-    this.testresult["save_phoneNumbers"] = (newcontact.phoneNumbers && newcontact.phoneNumbers.length === 1 && newcontact.phoneNumbers[0].value === '000 000 0001') ? "ok" : "fail"
+    this.testresult["save_phoneNumbers"] = (newcontact.phoneNumbers && newcontact.phoneNumbers.length === 1 && newcontact.phoneNumbers[0].value === '6471234560') ? "ok" : "fail"
     console.log("Find John Smith")
     console.log(contact)
     console.log("Remove")
