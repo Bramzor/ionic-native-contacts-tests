@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { Platform } from 'ionic-angular';
 
 import { Diagnostic } from '@ionic-native/diagnostic';
-import { Contacts, ContactField, ContactName, ContactFindOptions } from '@ionic-native/contacts';
+import { Contacts, Contact, ContactField, ContactName, ContactFindOptions } from '@ionic-native/contacts';
 
 @Component({
   selector: 'page-home',
@@ -50,15 +50,13 @@ export class HomePage {
   }
 
   public async test_createContact() {
-    let contact = this.contacts.create();
+    let contact = [];
     console.log(contact)
-    contact.name = new ContactName(null, 'Smith', 'John');
-    if (!contact.emails) contact.emails = []
-    contact.emails.push(new ContactField("home", "somemail@example.com"))
-    if (!contact.phoneNumbers) contact.phoneNumbers = []
-    contact.phoneNumbers.push(new ContactField("cell", "000 000 0000"))
-    contact.note = "Just a test"
-    return await contact.save()
+    contact['name'] = new ContactName(null, 'Smith', 'John');
+    contact['emails'] = [new ContactField("home", "somemail@example.com")];
+    contact['phoneNumbers'] = [new ContactField("cell", "000 000 0000")];
+    contact['note'] = "Just a test";
+    this.createContact(contact);
   }
 
   public validate_createContact(contact) {
@@ -77,16 +75,15 @@ export class HomePage {
     this.testresult["set_name"] = (newcontact.name.givenName === 'John' && newcontact.name.familyName === 'Smith') ? "ok" : "fail"
     this.testresult["set_note"] = (newcontact.note === 'Just a test') ? "ok" : "fail"
     this.testresult["set_email"] = (newcontact.emails && newcontact.emails.length > 0 && newcontact.emails[0].value === 'somemail@example.com') ? "ok" : "fail"
-    this.testresult["set_phoneNumbers"] = (newcontact.phoneNumbers && newcontact.phoneNumbers.length === 1 && newcontact.phoneNumbers[0].value === '000 000 0000') ? "ok" : "fail"
-    newcontact.name = new ContactName(null, 'Bond', 'James');
-    newcontact.note = "Just another test"
-    newcontact.emails = []
-    newcontact.emails.push(new ContactField("home", "someothermail@example.com"))
-    newcontact.phoneNumbers = []
-    newcontact.phoneNumbers.push(new ContactField("cell", "000 000 0001"))
-    newcontact.urls = []
-    newcontact.urls.push(new ContactField("sometype", "http://www.google.be"))
-    return await newcontact.save()
+    this.testresult["set_phoneNumbers"] = (newcontact.phoneNumbers && newcontact.phoneNumbers.length === 1 && newcontact.phoneNumbers[0].value === '000 000 0000') ? "ok" : "fail";
+    newcontact.remove();
+    let saveContact = [];
+    saveContact['name'] = new ContactName(null, 'Bond', 'James');
+    saveContact['emails'] = [new ContactField("home", "someothermail@example.com")];
+    saveContact['phoneNumbers'] = [new ContactField("cell", "000 000 0001")];
+    saveContact['urls'] = [new ContactField("sometype", "http://www.google.be")];
+    saveContact['note'] = "Just another test";
+    this.createContact(saveContact);
   }
 
   public async test_removeContact() {
@@ -100,7 +97,7 @@ export class HomePage {
     this.testresult["save_name"] = (newcontact.name.givenName === 'James' && newcontact.name.familyName === 'Bond') ? "ok" : "fail"
     this.testresult["save_note"] = (newcontact.note === 'Just another test') ? "ok" : "fail"
     this.testresult["save_email"] = (newcontact.emails && newcontact.emails.length > 0 && newcontact.emails[0].value === 'someothermail@example.com') ? "ok" : "fail"
-    this.testresult["save_url"] = (newcontact.urls && newcontact.urls.length > 0 && newcontact.urls[0].value === 'http://www.google.be"') ? "ok" : "fail"
+    this.testresult["save_url"] = (newcontact.urls && newcontact.urls.length > 0 && newcontact.urls[0].value === 'http://www.google.be') ? "ok" : "fail"
     this.testresult["save_phoneNumbers"] = (newcontact.phoneNumbers && newcontact.phoneNumbers.length === 1 && newcontact.phoneNumbers[0].value === '000 000 0001') ? "ok" : "fail"
     console.log("Find John Smith")
     console.log(contact)
@@ -121,6 +118,17 @@ export class HomePage {
     if (contact.length > 0) throw new Error('Contact found')
 
     return contact
+  }
+
+  public async createContact(contactData) {
+    let contact: Contact = this.contacts.create();
+    console.log(contact)
+    contact.name = contactData.name;
+    contact.emails = contactData.emails;
+    contact.phoneNumbers = contactData.phoneNumbers;
+    contact.note = contactData.note;
+    contact.urls = contactData.urls;
+    return await contact.save();
   }
 
 }
