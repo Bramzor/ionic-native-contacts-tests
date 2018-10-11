@@ -20,11 +20,20 @@
         <ion-item [color]="testresult['set_note'] === 'fail' ? 'danger': 'light'">
           <h2>Set Note: {{ testresult["set_note"] }}</h2>
         </ion-item>
+        <ion-item [color]="testresult['set_birthday'] === 'fail' ? 'danger': 'light'">
+          <h2>Set Birthday: {{ testresult["set_birthday"] }}</h2>
+        </ion-item>
         <ion-item [color]="testresult['set_email'] === 'fail' ? 'danger': 'light'">
           <h2>Set Email: {{ testresult["set_email"] }}</h2>
         </ion-item>
         <ion-item [color]="testresult['set_phoneNumbers'] === 'fail' ? 'danger': 'light'">
           <h2>Set PhoneNumber: {{ testresult["set_phoneNumbers"] }}</h2>
+        </ion-item>
+        <ion-item [color]="testresult['set_address'] === 'fail' ? 'danger': 'light'">
+          <h2>Set Address: {{ testresult["set_address"] }}</h2>
+        </ion-item>
+        <ion-item [color]="testresult['set_photo'] === 'fail' ? 'danger': 'light'">
+          <h2>Set Photo: {{ testresult["set_photo"] }}</h2>
         </ion-item>
       </ion-item-sliding>
     </ion-list>
@@ -41,6 +50,9 @@
         <ion-item [color]="testresult['save_note'] === 'fail' ? 'danger': 'light'">
           <h2>Save Note: {{ testresult["save_note"] }}</h2>
         </ion-item>
+        <ion-item [color]="testresult['save_birthday'] === 'fail' ? 'danger': 'light'">
+          <h2>Save Birthday: {{ testresult["save_birthday"] }}</h2>
+        </ion-item>
         <ion-item [color]="testresult['save_email'] === 'fail' ? 'danger': 'light'">
           <h2>Save Email: {{ testresult["save_email"] }}</h2>
         </ion-item>
@@ -49,6 +61,9 @@
         </ion-item>
         <ion-item [color]="testresult['save_phoneNumbers'] === 'fail' ? 'danger': 'light'">
           <h2>Save PhoneNumber: {{ testresult["save_phoneNumbers"] }}</h2>
+        </ion-item>
+        <ion-item [color]="testresult['save_address'] === 'fail' ? 'danger': 'light'">
+          <h2>Save Address: {{ testresult["save_address"] }}</h2>
         </ion-item>
       </ion-item-sliding>
     </ion-list>
